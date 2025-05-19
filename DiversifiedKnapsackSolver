@@ -1,0 +1,74 @@
+// DiversifiedKnapsackSolver.java in com.portfolio.algorithm
+package com.portfolio.algorithm;
+
+import com.portfolio.model.InvestmentOption;
+import com.portfolio.model.Portfolio;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class DiversifiedKnapsackSolver {
+
+    /**
+     * Solves the 0/1 Knapsack problem with sector diversification constraints
+     *
+     * @param investments List of available investment options
+     * @param riskTolerance Maximum risk tolerance
+     * @param maxSectorAllocation Maximum allocation per sector (as a fraction of total risk)
+     * @return Optimized diversified portfolio
+     */
+    public static Portfolio solveWithSectorConstraints(
+            List<InvestmentOption> investments,
+            double riskTolerance,
+            double maxSectorAllocation) {
+
+        int n = investments.size();
+        Portfolio bestPortfolio = new Portfolio();
+        double bestReturn = 0;
+
+        // Generate all possible combinations (power set) and find the best valid one
+        // This is a brute force approach for the extended problem
+        int numCombinations = 1 << n; // 2^n combinations
+
+        for (int i = 1; i < numCombinations; i++) {
+            Portfolio currentPortfolio = new Portfolio();
+            boolean isValid = true;
+
+            // Check each bit to include/exclude investments
+            for (int j = 0; j < n; j++) {
+                if ((i & (1 << j)) > 0) {
+                    InvestmentOption investment = investments.get(j);
+
+                    // Check if adding this investment exceeds risk tolerance
+                    if (currentPortfolio.getTotalRisk() + investment.getRiskFactor() > riskTolerance) {
+                        isValid = false;
+                        break;
+                    }
+
+                    // Add the investment temporarily to check constraints
+                    currentPortfolio.addInvestment(investment);
+
+                    // Check sector constraints
+                    Map<String, Double> allocation = currentPortfolio.getSectorAllocation();
+                    for (Double sectorRisk : allocation.values()) {
+                        if (sectorRisk / currentPortfolio.getTotalRisk() > maxSectorAllocation) {
+                            isValid = false;
+                            break;
+                        }
+                    }
+
+                    if (!isValid) break;
+                }
+            }
+
+            // If valid and better than current best, update best
+            if (isValid && currentPortfolio.getTotalReturn() > bestReturn) {
+                bestReturn = currentPortfolio.getTotalReturn();
+                bestPortfolio = currentPortfolio;
+            }
+        }
+
+        return bestPortfolio;
+    }
+}
