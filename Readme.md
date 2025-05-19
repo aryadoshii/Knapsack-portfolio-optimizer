@@ -156,15 +156,6 @@ The diversification approach adds sector constraints to ensure no single sector 
 - Support for multi-period investment optimization
 - Incorporate Monte Carlo simulations for risk assessment
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit pull requests, report bugs, or suggest features.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## License
 
