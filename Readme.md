@@ -106,32 +106,6 @@ Name,ExpectedReturn,RiskFactor,Sector
 "Energy Stock A",8.0,3.0,"Energy"
 ```
 
-## Installation
-
-### Prerequisites
-- Java JDK 8 or higher
-- Git (for cloning the repository)
-
-### Steps
-1. Clone the repository:
-```
-git clone https://github.com/YOUR_USERNAME/knapsack-portfolio-optimizer.git
-```
-
-2. Navigate to the project directory:
-```
-cd knapsack-portfolio-optimizer
-```
-
-3. Compile the project:
-```
-javac -d bin src/com/portfolio/main/KnapsackPortfolioApp.java
-```
-
-4. Run the application:
-```
-java -cp bin com.portfolio.main.KnapsackPortfolioApp
-```
 
 ## Key Concepts
 
