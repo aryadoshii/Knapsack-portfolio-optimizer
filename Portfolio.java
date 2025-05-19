@@ -27,6 +27,7 @@ public class Portfolio {
         // Update sector allocation
         String sector = investment.getSector();
         sectorAllocation.put(sector, sectorAllocation.getOrDefault(sector, 0.0) + investment.getRiskFactor());
+    
     }
 
     // Getters
