@@ -16,6 +16,7 @@ public class KnapsackSolver {
      * @return Optimized portfolio
      */
     public static Portfolio solveWithDP(List<InvestmentOption> investments, double riskTolerance) {
+
         int n = investments.size();
 
         // Scale risk values to work with DP table
